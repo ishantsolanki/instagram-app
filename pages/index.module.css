@@ -1,0 +1,17 @@
+.center {
+    text-align: center;
+}
+
+.productContent {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+}
+
+.navigationButton {
+    margin: 0 0.5em;
+}
