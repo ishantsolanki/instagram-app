@@ -1,16 +1,24 @@
 import { useEffect, useState } from 'react'
 import getProducts from '../api/products'
-import BeerComponent from '../components/beerComponent'
+import Product from '../components/product'
+import Sidepane from '../components/sidepane/sidepane'
 import {
+  main,
   center,
   productContent,
   navigation,
   navigationButton,
+  filterButton,
 } from './index.module.css'
 
 export default function IndexPage() {
   const [products, setProducts] = useState([])
   let [productIndex, setProductIndex] = useState(0)
+
+  const [isSidepaneOpen, setIsSidepaneOpen] = useState(false);
+
+  const openSidePane = () => setIsSidepaneOpen(true);
+  const closeSidePane = () => setIsSidepaneOpen(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -22,12 +30,12 @@ export default function IndexPage() {
   }, [setProducts])
 
   return (
-    <div>
+    <div className={main}>
       <h1 className={center}>Beers</h1>
       {!!products?.length && (
         <section>
           <div className={productContent}>
-            <BeerComponent beer={products[productIndex]} />
+            <Product product={products[productIndex]} />
           </div>
           <div className={navigation}>
             <button
@@ -54,6 +62,8 @@ export default function IndexPage() {
         </section>
       )}
       {!products?.length && <div> No beers for you :(</div>}
+      <button className={filterButton} onClick={openSidePane}>filter</button>
+      <Sidepane isOpen={isSidepaneOpen} closeSidepanHandler={closeSidePane} />
     </div>
   )
 }
