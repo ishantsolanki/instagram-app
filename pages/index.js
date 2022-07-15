@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import getBeers from '../api/beers'
+import getProducts from '../api/products'
 import BeerComponent from '../components/beerComponent'
 import {
   center,
@@ -9,25 +9,25 @@ import {
 } from './index.module.css'
 
 export default function IndexPage() {
-  const [beers, setBeers] = useState([])
+  const [products, setProducts] = useState([])
   let [productIndex, setProductIndex] = useState(0)
 
   useEffect(() => {
-    const fetchBeers = async () => {
-      const beersResult = await getBeers()
-      setBeers(beersResult)
+    const fetchProducts = async () => {
+      const productsResult = await getProducts()
+      setProducts(productsResult)
     }
 
-    fetchBeers()
-  }, [setBeers])
+    fetchProducts()
+  }, [setProducts])
 
   return (
     <div>
       <h1 className={center}>Beers</h1>
-      {!!beers?.length && (
+      {!!products?.length && (
         <section>
           <div className={productContent}>
-            <BeerComponent beer={beers[productIndex]} />
+            <BeerComponent beer={products[productIndex]} />
           </div>
           <div className={navigation}>
             <button
@@ -42,9 +42,9 @@ export default function IndexPage() {
             </button>
             <button
               className={navigationButton}
-              disabled={productIndex === beers.length - 1}
+              disabled={productIndex === products.length - 1}
               onClick={() =>
-                productIndex < beers.length &&
+                productIndex < products.length &&
                 setProductIndex((productIndex) => productIndex + 1)
               }
             >
@@ -53,7 +53,7 @@ export default function IndexPage() {
           </div>
         </section>
       )}
-      {!beers?.length && <div> No beers for you :(</div>}
+      {!products?.length && <div> No beers for you :(</div>}
     </div>
   )
 }
