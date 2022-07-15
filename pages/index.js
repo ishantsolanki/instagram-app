@@ -1,25 +1,25 @@
-import { useEffect, useState } from "react";
-import getBeers from "../api/beers";
-import BeerComponent from "../components/beerComponent";
+import { useEffect, useState } from 'react'
+import getBeers from '../api/beers'
+import BeerComponent from '../components/beerComponent'
 import {
   center,
   productContent,
   navigation,
-  navigationButton
-} from "./index.module.css";
+  navigationButton,
+} from './index.module.css'
 
 export default function IndexPage() {
-  const [beers, setBeers] = useState([]);
-  let [productIndex, setProductIndex] = useState(0);
+  const [beers, setBeers] = useState([])
+  let [productIndex, setProductIndex] = useState(0)
 
   useEffect(() => {
     const fetchBeers = async () => {
-      const beersResult = await getBeers();
-      setBeers(beersResult);
-    };
+      const beersResult = await getBeers()
+      setBeers(beersResult)
+    }
 
-    fetchBeers();
-  }, [setBeers]);
+    fetchBeers()
+  }, [setBeers])
 
   return (
     <div>
@@ -38,7 +38,7 @@ export default function IndexPage() {
                 setProductIndex((productIndex) => productIndex - 1)
               }
             >
-              {"<<"} Previous
+              {'<<'} Previous
             </button>
             <button
               className={navigationButton}
@@ -48,12 +48,12 @@ export default function IndexPage() {
                 setProductIndex((productIndex) => productIndex + 1)
               }
             >
-              Next {">>"}
+              Next {'>>'}
             </button>
           </div>
         </section>
       )}
       {!beers?.length && <div> No beers for you :(</div>}
     </div>
-  );
+  )
 }
