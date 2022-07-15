@@ -1,7 +1,5 @@
 .beerDisplay {
     flex: 1 1 auto;
-    flex-wrap: wrap;
-    padding-left: 2em;
     display: flex;
     flex-direction: column;
     padding-bottom: 2em;
@@ -12,3 +10,6 @@
     padding-bottom: 1em;
   }
   
+  .imageContainer {
+    height: 75vh;
+  }
