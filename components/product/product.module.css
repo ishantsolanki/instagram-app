@@ -17,3 +17,8 @@
 .productName {
   margin-bottom: 1em;
 }
+
+.inBasketCountText {
+  font-size: 10px;
+  color: var(--gray)
+}

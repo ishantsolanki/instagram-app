@@ -3,18 +3,20 @@ import Image from 'next/image'
 import getProducts from '../api/products'
 import Product from '../components/product/product'
 import Sidepane from '../components/sidepane/sidepane'
-
-import c from './index.module.css'
 import FilterContext from '../context/filter'
 import ScrollPane from '../components/product/scrollpane/scrollpane'
 import FilterContent from '../components/filterContent/filterContent'
 import useBoolean from '../hooks/useBoolean'
+import BasketContext from '../context/basket'
+
+import c from './index.module.css'
 
 export default function IndexPage() {
   const [products, setProducts] = useState([])
   const [isFilterOpen, [openFilters, closeFilters]] = useBoolean(false)
   const [isBasketOpen, [openBasket, closeBasket]] = useBoolean(false)
   const [filterValues, setFilterValues] = useContext(FilterContext)
+  const [basket] = useContext(BasketContext)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -57,7 +59,7 @@ export default function IndexPage() {
         filter
       </button>
       <button className={c.basketButton} onClick={openBasket}>
-        basket <span className={c.basketCount}>(100)</span>
+        basket <span className={c.basketCount}>({basket.length})</span>
       </button>
       <Sidepane isOpen={isFilterOpen} closeHandler={closeFilters}>
         <FilterContent

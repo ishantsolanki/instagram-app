@@ -1,7 +1,13 @@
+import { useContext, useMemo } from 'react'
+import BasketContext from '../../context/basket'
 import c from './product.module.css'
 import ProductImage from './productImage'
 
 const Product = ({ product }) => {
+  const [basket, dispatch] = useContext(BasketContext)
+  const inBasketCount = useMemo(() => {
+    return basket.filter((basketItem) => basketItem.id === product.id).length
+  }, [basket, product.id])
   return (
     <div className={c.productDisplay}>
       <div className={c.imageContainer}>
@@ -12,7 +18,10 @@ const Product = ({ product }) => {
         />
       </div>
       <div className={c.productName}>{product.name}</div>
-      <button>Buy for £{product.price}</button>
+      <button onClick={() => dispatch({ type: 'ADD', payload: product })}>
+        Buy for £{product.price}
+      </button>
+      {!!inBasketCount && <div className={c.inBasketCountText}>({inBasketCount} in basket)</div>}
     </div>
   )
 }
