@@ -44,7 +44,7 @@ export default function IndexPage() {
                 setProductIndex((productIndex) => productIndex - 1)
               }
             >
-              {'<<'} Previous
+              {'<<'}
             </button>
             <button
               className={navigationButton}
@@ -54,7 +54,7 @@ export default function IndexPage() {
                 setProductIndex((productIndex) => productIndex + 1)
               }
             >
-              Next {'>>'}
+              {'>>'}
             </button>
           </div>
         </section>
