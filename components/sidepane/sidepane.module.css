@@ -1,19 +1,19 @@
-.cSidepane {
-    position: absolute;
-    height: 100vh;
-    width: 100%;
-    display: block;
-    top: 0;
-    left: 100%;
-    background-color: white;
-    border-left: 2px solid gray;
-    transition: 0.25s ease-in;
+.sidepane {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  display: block;
+  top: 0;
+  left: 100%;
+  background-color: white;
+  border-left: 2px solid gray;
+  transition: 0.25s ease-in;
 }
 
-.cIsOpen {
-    transform: translateX(-70%);
+.isOpen {
+  transform: translateX(-70%);
 }
 
-.cIsClosed {
-    transform: translateX(0);
+.isClosed {
+  transform: translateX(0);
 }

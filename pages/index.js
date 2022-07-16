@@ -13,10 +13,8 @@ import {
 
 export default function IndexPage() {
   const [products, setProducts] = useState([])
-  let [productIndex, setProductIndex] = useState(0)
-
+  const [productIndex, setProductIndex] = useState(0)
   const [isSidepaneOpen, setIsSidepaneOpen] = useState(false);
-
   const openSidePane = () => setIsSidepaneOpen(true);
   const closeSidePane = () => setIsSidepaneOpen(false);
 

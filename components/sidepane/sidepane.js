@@ -1,10 +1,10 @@
 import cx from 'classnames';
-import {cSidepane, cIsClosed, cIsOpen} from './sidepane.module.css';
+import c from './sidepane.module.css';
 
 const Sidepane = ({ isOpen, closeSidepanHandler }) => {
-    return <div className={cx(cSidepane, {
-        [cIsOpen]: isOpen,
-        [cIsClosed]: !isOpen
+    return <div className={cx(c.sidepane, {
+        [c.isOpen]: isOpen,
+        [c.isClosed]: !isOpen
     })}>
         sidepane contents here
 

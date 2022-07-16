@@ -1,21 +1,17 @@
-import {
-  productDisplay,
-  productImage,
-  imageContainer,
-} from './product.module.css'
+import c from './product.module.css'
 
 const Product = ({ product }) => {
   return (
-    <div className={productDisplay}>
-      <div className={imageContainer}>
+    <div className={c.productDisplay}>
+      <div className={c.imageContainer}>
         <img
-          className={productImage}
+          className={c.productImage}
           src={product.image_url}
           alt={product.name}
           height="100%"
         />
       </div>
-      <div>{product.name}</div>
+      <div className={c.productName}>{product.name}</div>
       <button>Buy</button>
     </div>
   )
