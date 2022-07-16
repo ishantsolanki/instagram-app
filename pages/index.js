@@ -14,9 +14,9 @@ import {
 export default function IndexPage() {
   const [products, setProducts] = useState([])
   const [productIndex, setProductIndex] = useState(0)
-  const [isSidepaneOpen, setIsSidepaneOpen] = useState(false);
-  const openSidePane = () => setIsSidepaneOpen(true);
-  const closeSidePane = () => setIsSidepaneOpen(false);
+  const [isSidepaneOpen, setIsSidepaneOpen] = useState(false)
+  const openSidePane = () => setIsSidepaneOpen(true)
+  const closeSidePane = () => setIsSidepaneOpen(false)
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -60,7 +60,9 @@ export default function IndexPage() {
         </section>
       )}
       {!products?.length && <div> No beers for you :(</div>}
-      <button className={filterButton} onClick={openSidePane}>filter</button>
+      <button className={filterButton} onClick={openSidePane}>
+        filter
+      </button>
       <Sidepane isOpen={isSidepaneOpen} closeSidepanHandler={closeSidePane} />
     </div>
   )
