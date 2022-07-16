@@ -1,0 +1,41 @@
+.heading {
+  text-align: center;
+}
+
+.container {
+  padding: 1em;
+}
+
+.row {
+  display: flex;
+}
+
+.rowName {
+  flex: 2;
+}
+
+.rowQuantity {
+  flex: 1;
+  text-align: center;
+}
+
+.rowPrice {
+  flex: 1;
+  text-align: right;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+}
+
+.buyButton {
+  margin-left: auto;
+  margin-top: 0.5em;
+  display: flex;
+}
+
+.purchaseConfirmed {
+  text-align: center;
+  margin-top: 1em;
+}

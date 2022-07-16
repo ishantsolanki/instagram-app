@@ -21,7 +21,9 @@ const Product = ({ product }) => {
       <button onClick={() => dispatch({ type: 'ADD', payload: product })}>
         Buy for £{product.price}
       </button>
-      {!!inBasketCount && <div className={c.inBasketCountText}>({inBasketCount} in basket)</div>}
+      {!!inBasketCount && (
+        <div className={c.inBasketCountText}>({inBasketCount} in basket)</div>
+      )}
     </div>
   )
 }

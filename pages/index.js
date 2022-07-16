@@ -10,6 +10,8 @@ import useBoolean from '../hooks/useBoolean'
 import BasketContext from '../context/basket'
 
 import c from './index.module.css'
+import BasketContent from '../components/basketContent/basketContent'
+import Link from 'next/link'
 
 export default function IndexPage() {
   const [products, setProducts] = useState([])
@@ -58,9 +60,11 @@ export default function IndexPage() {
       <button className={c.filterButton} onClick={openFilters}>
         filter
       </button>
-      <button className={c.basketButton} onClick={openBasket}>
-        basket <span className={c.basketCount}>({basket.length})</span>
-      </button>
+      <Link href="/basket">
+        <button className={c.basketButton}>
+          basket <span className={c.basketCount}>({basket.length})</span>
+        </button>
+      </Link>
       <Sidepane isOpen={isFilterOpen} closeHandler={closeFilters}>
         <FilterContent
           closeSidepaneHandler={closeFilters}
@@ -68,9 +72,9 @@ export default function IndexPage() {
         />
       </Sidepane>
 
-      <Sidepane isOpen={isBasketOpen} closeHandler={closeBasket}>
-        {/* <BasketContent /> */}
-      </Sidepane>
+      {/* <Sidepane isOpen={isBasketOpen} closeHandler={closeBasket}>
+        <BasketContent />
+      </Sidepane> */}
     </div>
   )
 }

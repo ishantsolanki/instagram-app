@@ -19,3 +19,14 @@
 .isClosed {
   transform: translateX(0);
 }
+
+.closeSidepaneButton {
+  border: none;
+  border-radius: 50%;
+  position: absolute;
+  left: 60%;
+  top: 10px;
+  background-color: var(--punk-blue);
+  font-family: sans-serif;
+  padding: 0.2em 0.4em;
+}
