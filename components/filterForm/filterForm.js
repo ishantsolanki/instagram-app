@@ -1,3 +1,5 @@
+import c from './filterForm.module.css'
+
 const FilterForm = ({ formConfig, setFilterValues }) => {
   const onFormSubmit = (event) => {
     event.preventDefault()
@@ -11,11 +13,14 @@ const FilterForm = ({ formConfig, setFilterValues }) => {
     <form onSubmit={onFormSubmit}>
       {formConfig.fields.map(({ Component, ...field }) => (
         <div key={field.id}>
-          <label htmlFor={field.id}>{field.label}</label>
+          <label className={c.label} htmlFor={field.id}>
+            {field.label}
+          </label>
           <Component name={field.name} id={field.id} type={field.type} />
         </div>
       ))}
 
+      <hr className={c.divider} />
       <button type="submit">Apply</button>
       <button onClick={() => setFilterValues([])}>Clear all filters</button>
     </form>

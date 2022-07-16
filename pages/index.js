@@ -7,6 +7,7 @@ import Sidepane from '../components/sidepane/sidepane'
 import c from './index.module.css'
 import FilterContext from '../context/filter'
 import ScrollPane from '../components/product/scrollpane/scrollpane'
+import FilterContent from '../components/filterContent/filterContent'
 
 export default function IndexPage() {
   const [products, setProducts] = useState([])
@@ -55,11 +56,12 @@ export default function IndexPage() {
       <button className={c.filterButton} onClick={openSidePane}>
         filter
       </button>
-      <Sidepane
-        isOpen={isSidepaneOpen}
-        closeSidepaneHandler={closeSidePane}
-        setFilterValues={setFilterValues}
-      />
+      <Sidepane isOpen={isSidepaneOpen}>
+        <FilterContent
+          closeSidepaneHandler={closeSidePane}
+          setFilterValues={setFilterValues}
+        />
+      </Sidepane>
     </div>
   )
 }
