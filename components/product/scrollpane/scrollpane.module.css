@@ -1,0 +1,10 @@
+.scrollPane {
+  display: inline-flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+
+.scrollItem {
+  min-width: 100vw;
+  scroll-snap-align: start;
+}

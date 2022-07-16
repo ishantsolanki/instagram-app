@@ -2,14 +2,13 @@ import { useContext, useEffect, useState } from 'react'
 import getProducts from '../api/products'
 import Product from '../components/product/product'
 import Sidepane from '../components/sidepane/sidepane'
-import Navigation from '../components/navigation/navigation'
 
 import c from './index.module.css'
 import FilterContext from '../context/filter'
+import ScrollPane from '../components/product/scrollpane/scrollpane'
 
 export default function IndexPage() {
   const [products, setProducts] = useState([])
-  const [productIndex, setProductIndex] = useState(0)
   const [isSidepaneOpen, setIsSidepaneOpen] = useState(false)
   const openSidePane = () => setIsSidepaneOpen(true)
   const closeSidePane = () => setIsSidepaneOpen(false)
@@ -21,9 +20,6 @@ export default function IndexPage() {
       setProducts(productsResult)
     }
 
-    // when refetching products, set the index to 0 again.
-    setProductIndex(0)
-
     fetchProducts()
   }, [setProducts, filterValues])
 
@@ -33,13 +29,12 @@ export default function IndexPage() {
       {!!products?.length && (
         <section>
           <div className={c.productContent}>
-            <Product product={products[productIndex]} />
+            <ScrollPane>
+              {products.map((product) => (
+                <Product key={product.id} product={product} />
+              ))}
+            </ScrollPane>
           </div>
-          <Navigation
-            productIndex={productIndex}
-            totalProducts={products.length}
-            setProductIndex={setProductIndex}
-          />
         </section>
       )}
       {!products?.length && (
