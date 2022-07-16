@@ -12,7 +12,7 @@ const FilterForm = ({ formConfig, setFilterValues }) => {
   return (
     <form onSubmit={onFormSubmit}>
       {formConfig.fields.map(({ Component, ...field }) => (
-        <div key={field.id}>
+        <div className={c.field} key={field.id}>
           <label className={c.label} htmlFor={field.id}>
             {field.label}
           </label>
@@ -21,8 +21,14 @@ const FilterForm = ({ formConfig, setFilterValues }) => {
       ))}
 
       <hr className={c.divider} />
-      <button type="submit">Apply</button>
-      <button onClick={() => setFilterValues([])}>Clear all filters</button>
+      <div className={c.actions}>
+        <button type="submit" className={c.apply}>
+          Apply
+        </button>
+        <button type="button" onClick={() => setFilterValues([])}>
+          Clear all filters
+        </button>
+      </div>
     </form>
   )
 }

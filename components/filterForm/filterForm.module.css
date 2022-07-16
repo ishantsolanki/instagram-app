@@ -1,8 +1,20 @@
+.field {
+  margin-left: 0.5em;
+}
 .label {
   display: block;
   margin-top: 0.5em;
 }
 
 .divider {
-  border: 1px solid var(--punk-blue)
+  border: 1px solid var(--punk-blue);
+}
+
+.actions {
+  text-align: center;
+  margin-bottom: 0.5em;
+}
+
+.apply {
+  margin-right: 0.5em;
 }
