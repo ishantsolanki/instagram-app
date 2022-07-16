@@ -5,8 +5,8 @@
   display: block;
   top: 0;
   left: 100%;
-  background-color: white;
-  border-left: 2px solid gray;
+  background-color: var(--punk-blue-light);
+  border-left: 2px solid var(--punk-blue);
   transition: 0.25s ease-in;
   z-index: 1;
 }
