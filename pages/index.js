@@ -4,7 +4,7 @@ import Product from '../components/product'
 import Sidepane from '../components/sidepane/sidepane'
 import {
   main,
-  center,
+  heading,
   productContent,
   navigation,
   navigationButton,
@@ -29,7 +29,7 @@ export default function IndexPage() {
 
   return (
     <div className={main}>
-      <h1 className={center}>Beers</h1>
+      <h3 className={heading}>Beers</h3>
       {!!products?.length && (
         <section>
           <div className={productContent}>

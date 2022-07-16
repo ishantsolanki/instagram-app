@@ -3,8 +3,11 @@
   overflow: hidden;
 }
 
-.center {
+.heading {
   text-align: center;
+  margin: 0;
+  padding: 0.5em 0;
+  background-color: var(--punk-blue);
 }
 
 .productContent {
