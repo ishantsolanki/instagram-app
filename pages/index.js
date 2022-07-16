@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import getProducts from '../api/products'
-import Product from '../components/product'
+import Product from '../components/product/product'
 import Sidepane from '../components/sidepane/sidepane'
 import {
   main,
@@ -59,7 +59,7 @@ export default function IndexPage() {
           </div>
         </section>
       )}
-      {!products?.length && <div> No beers for you :(</div>}
+      {!products?.length && <div>{'No beers for you :('}</div>}
       <button className={filterButton} onClick={openSidePane}>
         filter
       </button>
