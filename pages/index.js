@@ -2,14 +2,8 @@ import { useEffect, useState } from 'react'
 import getProducts from '../api/products'
 import Product from '../components/product/product'
 import Sidepane from '../components/sidepane/sidepane'
-import {
-  main,
-  heading,
-  productContent,
-  navigation,
-  navigationButton,
-  filterButton,
-} from './index.module.css'
+import Navigation from '../components/navigation/navigation'
+import c from './index.module.css'
 
 export default function IndexPage() {
   const [products, setProducts] = useState([])
@@ -28,39 +22,22 @@ export default function IndexPage() {
   }, [setProducts])
 
   return (
-    <div className={main}>
-      <h3 className={heading}>Beers</h3>
+    <div className={c.main}>
+      <h3 className={c.heading}>Beers</h3>
       {!!products?.length && (
         <section>
-          <div className={productContent}>
+          <div className={c.productContent}>
             <Product product={products[productIndex]} />
           </div>
-          <div className={navigation}>
-            <button
-              className={navigationButton}
-              disabled={productIndex === 0}
-              onClick={() =>
-                productIndex >= 0 &&
-                setProductIndex((productIndex) => productIndex - 1)
-              }
-            >
-              {'<<'}
-            </button>
-            <button
-              className={navigationButton}
-              disabled={productIndex === products.length - 1}
-              onClick={() =>
-                productIndex < products.length &&
-                setProductIndex((productIndex) => productIndex + 1)
-              }
-            >
-              {'>>'}
-            </button>
-          </div>
+          <Navigation
+            productIndex={productIndex}
+            totalProducts={products.length}
+            setProductIndex={setProductIndex}
+          />
         </section>
       )}
       {!products?.length && <div>{'No beers for you :('}</div>}
-      <button className={filterButton} onClick={openSidePane}>
+      <button className={c.filterButton} onClick={openSidePane}>
         filter
       </button>
       <Sidepane isOpen={isSidepaneOpen} closeSidepanHandler={closeSidePane} />
