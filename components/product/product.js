@@ -12,7 +12,7 @@ const Product = ({ product }) => {
         />
       </div>
       <div className={c.productName}>{product.name}</div>
-      <button>Buy</button>
+      <button>Buy for £{product.price}</button>
     </div>
   )
 }

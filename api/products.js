@@ -10,13 +10,21 @@ const generateSearchParamsFromFilterValues = (filterValues = {}) => {
   return urlSearchParams
 }
 
+const addFakePrices = (products) =>
+  products.map((product) => ({
+    ...product,
+    price: Math.round(Math.random() * 15 + 5),
+  }))
+
 const getBeers = (filterValues) => {
   const urlSearchParams = generateSearchParamsFromFilterValues(filterValues)
 
   return fetch(
     `https://api.punkapi.com/v2/beers?${urlSearchParams.toString()}`,
     { method: 'GET' }
-  ).then((res) => res.json())
+  )
+    .then((res) => res.json())
+    .then(addFakePrices)
 }
 
 export default getBeers
