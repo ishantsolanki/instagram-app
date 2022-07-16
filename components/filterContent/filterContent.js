@@ -28,7 +28,6 @@ const FilterContent = ({ closeSidepaneHandler, setFilterValues }) => {
           ],
         }}
       />
-      <button onClick={closeSidepaneHandler}>close</button>
     </>
   )
 }

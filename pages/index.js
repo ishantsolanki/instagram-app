@@ -8,12 +8,12 @@ import c from './index.module.css'
 import FilterContext from '../context/filter'
 import ScrollPane from '../components/product/scrollpane/scrollpane'
 import FilterContent from '../components/filterContent/filterContent'
+import useBoolean from '../hooks/useBoolean'
 
 export default function IndexPage() {
   const [products, setProducts] = useState([])
-  const [isSidepaneOpen, setIsSidepaneOpen] = useState(false)
-  const openSidePane = () => setIsSidepaneOpen(true)
-  const closeSidePane = () => setIsSidepaneOpen(false)
+  const [isFilterOpen, [openFilters, closeFilters]] = useBoolean(false)
+  const [isBasketOpen, [openBasket, closeBasket]] = useBoolean(false)
   const [filterValues, setFilterValues] = useContext(FilterContext)
 
   useEffect(() => {
@@ -53,14 +53,21 @@ export default function IndexPage() {
           <button onClick={() => setFilterValues([])}>Clear filters</button>
         </div>
       )}
-      <button className={c.filterButton} onClick={openSidePane}>
+      <button className={c.filterButton} onClick={openFilters}>
         filter
       </button>
-      <Sidepane isOpen={isSidepaneOpen}>
+      <button className={c.basketButton} onClick={openBasket}>
+        basket <span className={c.basketCount}>(100)</span>
+      </button>
+      <Sidepane isOpen={isFilterOpen} closeHandler={closeFilters}>
         <FilterContent
-          closeSidepaneHandler={closeSidePane}
+          closeSidepaneHandler={closeFilters}
           setFilterValues={setFilterValues}
         />
+      </Sidepane>
+
+      <Sidepane isOpen={isBasketOpen} closeHandler={closeBasket}>
+        {/* <BasketContent /> */}
       </Sidepane>
     </div>
   )
