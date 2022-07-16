@@ -32,28 +32,32 @@ const BasketContent = () => {
     <>
       <h5 className={c.heading}>Basket</h5>
       <div className={c.container}>
-        <div className={c.row}>
-          <div className={c.rowName}>Name</div>
-          <div className={c.rowQuantity}>Quantity</div>
-          <div className={c.rowPrice}>Price</div>
-        </div>
-        {basketItemsForBilling.map((basketItem, index) => (
-          <div className={c.row} key={`${basketItem.id}-${index}`}>
-            <div className={c.rowName}>{basketItem.name}</div>
-            <div className={c.rowQuantity}>{basketItem.quantity}</div>
-            <div className={c.rowPrice}>£{basketItem.price}</div>
-          </div>
-        ))}
-        <hr />
-        <div className={c.total}>
-          Total:
-          <span>
-            £{basket.reduce((acc, basketItem) => acc + basketItem.price, 0)}
-          </span>
-        </div>
-        <button className={c.buyButton} onClick={buyProducts}>
-          Buy
-        </button>
+        {!areProductsBought && (
+          <>
+            <div className={c.row}>
+              <div className={c.rowName}>Name</div>
+              <div className={c.rowQuantity}>Quantity</div>
+              <div className={c.rowPrice}>Price</div>
+            </div>
+            {basketItemsForBilling.map((basketItem, index) => (
+              <div className={c.row} key={`${basketItem.id}-${index}`}>
+                <div className={c.rowName}>{basketItem.name}</div>
+                <div className={c.rowQuantity}>{basketItem.quantity}</div>
+                <div className={c.rowPrice}>£{basketItem.price}</div>
+              </div>
+            ))}
+            <hr />
+            <div className={c.total}>
+              Total:
+              <span>
+                £{basket.reduce((acc, basketItem) => acc + basketItem.price, 0)}
+              </span>
+            </div>
+            <button className={c.buyButton} onClick={buyProducts}>
+              Buy
+            </button>
+          </>
+        )}
 
         {areProductsBought && (
           <div className={c.purchaseConfirmed}>
