@@ -8,6 +8,7 @@ import ScrollPane from '../components/product/scrollpane/scrollpane'
 import FilterContent from '../components/filterContent/filterContent'
 import useBoolean from '../hooks/useBoolean'
 import BasketContext from '../context/basket'
+import capture, { TYPES } from '../analytics/capture'
 
 import c from './index.module.css'
 import Link from 'next/link'
@@ -52,10 +53,23 @@ export default function IndexPage() {
           <div>{'No beers for you :('}</div>
           <hr />
           <div className={c.clearFilterHint}>Try clearing all filters?</div>
-          <button onClick={() => setFilterValues([])}>Clear filters</button>
+          <button
+            onClick={() => {
+              setFilterValues([])
+              capture(TYPES.CLICK, { type: 'Clear filter values' })
+            }}
+          >
+            Clear filters
+          </button>
         </div>
       )}
-      <button className={c.filterButton} onClick={openFilters}>
+      <button
+        className={c.filterButton}
+        onClick={() => {
+          openFilters()
+          capture(TYPES.CLICK, { type: 'Open filters' })
+        }}
+      >
         filter
       </button>
       <Link href="/basket">
@@ -63,9 +77,18 @@ export default function IndexPage() {
           basket <span className={c.basketCount}>({basket.length})</span>
         </button>
       </Link>
-      <Sidepane isOpen={isFilterOpen} closeHandler={closeFilters}>
+      <Sidepane
+        isOpen={isFilterOpen}
+        closeHandler={() => {
+          closeFilters()
+          capture(TYPES.CLICK, { type: 'Close filters' })
+        }}
+      >
         <FilterContent
-          closeSidepaneHandler={closeFilters}
+          closeSidepaneHandler={() => {
+            closeFilters()
+            capture(TYPES.CLICK, { type: 'Close filters' })
+          }}
           setFilterValues={setFilterValues}
         />
       </Sidepane>

@@ -1,3 +1,4 @@
+import capture, { TYPES } from '../../analytics/capture'
 import c from './filterForm.module.css'
 
 const FilterForm = ({ formConfig, setFilterValues }) => {
@@ -8,6 +9,7 @@ const FilterForm = ({ formConfig, setFilterValues }) => {
     const fieldValues = Object.fromEntries(formData.entries())
 
     setFilterValues(fieldValues)
+    capture(TYPES.CLICK, { type: 'Apply filter' })
   }
   return (
     <form onSubmit={onFormSubmit}>
@@ -25,7 +27,13 @@ const FilterForm = ({ formConfig, setFilterValues }) => {
         <button type="submit" className={c.apply}>
           Apply
         </button>
-        <button type="button" onClick={() => setFilterValues([])}>
+        <button
+          type="button"
+          onClick={() => {
+            setFilterValues([])
+            capture(TYPES.CLICK, { type: 'Clear all filters' })
+          }}
+        >
           Clear all filters
         </button>
       </div>

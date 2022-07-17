@@ -2,6 +2,7 @@ import { useContext, useMemo } from 'react'
 import c from './basketContent.module.css'
 import BasketContext from '../../context/basket'
 import useBoolean from '../../hooks/useBoolean'
+import capture, { TYPES } from '../../analytics/capture'
 
 const BasketContent = () => {
   const [basket] = useContext(BasketContext)
@@ -11,6 +12,7 @@ const BasketContent = () => {
     const itemsForBilling = new Map()
 
     basket.forEach((basketItem) => {
+      // group items and calculate quantity for each
       const existingItem = itemsForBilling.get(basketItem.id)
       if (existingItem) {
         itemsForBilling.set(basketItem.id, {
@@ -28,6 +30,7 @@ const BasketContent = () => {
 
     return Object.values(Object.fromEntries(itemsForBilling))
   }, [basket])
+
   return (
     <>
       <h5 className={c.heading}>Basket</h5>
@@ -53,7 +56,13 @@ const BasketContent = () => {
                 £{basket.reduce((acc, basketItem) => acc + basketItem.price, 0)}
               </span>
             </div>
-            <button className={c.buyButton} onClick={buyProducts}>
+            <button
+              className={c.buyButton}
+              onClick={() => {
+                buyProducts()
+                capture(TYPES.CLICK, { type: 'Buy products' })
+              }}
+            >
               Buy
             </button>
           </>
