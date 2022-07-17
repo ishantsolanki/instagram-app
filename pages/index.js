@@ -10,13 +10,11 @@ import useBoolean from '../hooks/useBoolean'
 import BasketContext from '../context/basket'
 
 import c from './index.module.css'
-import BasketContent from '../components/basketContent/basketContent'
 import Link from 'next/link'
 
 export default function IndexPage() {
   const [products, setProducts] = useState([])
   const [isFilterOpen, [openFilters, closeFilters]] = useBoolean(false)
-  const [isBasketOpen, [openBasket, closeBasket]] = useBoolean(false)
   const [filterValues, setFilterValues] = useContext(FilterContext)
   const [basket] = useContext(BasketContext)
 
@@ -71,10 +69,6 @@ export default function IndexPage() {
           setFilterValues={setFilterValues}
         />
       </Sidepane>
-
-      {/* <Sidepane isOpen={isBasketOpen} closeHandler={closeBasket}>
-        <BasketContent />
-      </Sidepane> */}
     </div>
   )
 }
