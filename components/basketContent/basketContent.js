@@ -3,6 +3,7 @@ import c from './basketContent.module.css'
 import BasketContext from '../../context/basket'
 import useBoolean from '../../hooks/useBoolean'
 import capture, { TYPES } from '../../analytics/capture'
+import Link from 'next/link'
 
 const BasketContent = () => {
   const [basket] = useContext(BasketContext)
@@ -34,6 +35,9 @@ const BasketContent = () => {
   return (
     <>
       <h5 className={c.heading}>Basket</h5>
+      <Link href="/">
+        <button className={c.backButton}>back</button>
+      </Link>
       <div className={c.container}>
         {!areProductsBought && (
           <>

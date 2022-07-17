@@ -1,5 +1,4 @@
 import { useCallback, useContext, useEffect, useState } from 'react'
-import Image from 'next/image'
 import getProducts from '../api/products'
 import Product from '../components/product/product'
 import Sidepane from '../components/sidepane/sidepane'
@@ -12,6 +11,7 @@ import capture, { TYPES } from '../analytics/capture'
 
 import c from './index.module.css'
 import Link from 'next/link'
+import NoProducts from '../components/noProducts/noProducts'
 
 export default function IndexPage() {
   const [products, setProducts] = useState([])
@@ -57,26 +57,13 @@ export default function IndexPage() {
         </section>
       )}
       {!products?.length && (
-        <div className={c.noProduct}>
-          <Image
-            src="/beer-spill.jpeg"
-            width="300"
-            height="300"
-            alt="No beers"
-          />
-          <div>{'No beers for you :('}</div>
-          <hr />
-          <div className={c.clearFilterHint}>Try clearing all filters?</div>
-          <button
-            onClick={() => {
-              setFilterValues([])
-              setPage(1)
-              capture(TYPES.CLICK, { type: 'Clear filter values' })
-            }}
-          >
-            Clear filters
-          </button>
-        </div>
+        <NoProducts
+          onClearFilters={() => {
+            setFilterValues([])
+            setPage(1)
+            capture(TYPES.CLICK, { type: 'Clear filter values' })
+          }}
+        />
       )}
       <button
         className={c.filterButton}

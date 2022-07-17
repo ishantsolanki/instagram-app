@@ -30,15 +30,6 @@
 }
 
 .basketCount {
-  font-size: 8px;
+  font-size: 10px;
   margin-left: 0.3em
-}
-
-.noProduct {
-  text-align: center;
-}
-
-.clearFilterHint {
-  font-size: 0.75em;
-  margin-bottom: 0.5em;
 }
