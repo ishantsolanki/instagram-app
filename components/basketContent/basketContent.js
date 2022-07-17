@@ -60,15 +60,17 @@ const BasketContent = () => {
                 £{basket.reduce((acc, basketItem) => acc + basketItem.price, 0)}
               </span>
             </div>
-            <button
-              className={c.buyButton}
-              onClick={() => {
-                buyProducts()
-                capture(TYPES.CLICK, { type: 'Buy products' })
-              }}
-            >
-              Buy
-            </button>
+            {!!basketItemsForBilling.length && (
+              <button
+                className={c.buyButton}
+                onClick={() => {
+                  buyProducts()
+                  capture(TYPES.CLICK, { type: 'Buy products' })
+                }}
+              >
+                Buy
+              </button>
+            )}
           </>
         )}
 
