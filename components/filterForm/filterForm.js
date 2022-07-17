@@ -11,6 +11,7 @@ const FilterForm = ({ formConfig, setFilterValues }) => {
     setFilterValues(fieldValues)
     capture(TYPES.CLICK, { type: 'Apply filter' })
   }
+
   return (
     <form onSubmit={onFormSubmit}>
       {formConfig.fields.map(({ Component, ...field }) => (
