@@ -16,8 +16,9 @@ const addFakePrices = (products) =>
     price: Math.round(Math.random() * 15 + 5),
   }))
 
-const getBeers = (filterValues) => {
+const getBeers = (filterValues, page) => {
   const urlSearchParams = generateSearchParamsFromFilterValues(filterValues)
+  urlSearchParams.set('page', page)
 
   return fetch(
     `https://api.punkapi.com/v2/beers?${urlSearchParams.toString()}`,

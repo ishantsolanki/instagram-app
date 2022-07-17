@@ -23,5 +23,4 @@ export const captureDwellTime = (payload) => (time) =>
     ...payload,
   })
 
-
 export default capture

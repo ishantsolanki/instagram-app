@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useCallback, useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 import getProducts from '../api/products'
 import Product from '../components/product/product'
@@ -18,15 +18,29 @@ export default function IndexPage() {
   const [isFilterOpen, [openFilters, closeFilters]] = useBoolean(false)
   const [filterValues, setFilterValues] = useContext(FilterContext)
   const [basket] = useContext(BasketContext)
+  const [page, setPage] = useState(1)
+
+  const scrollEndCallback = useCallback(() => {
+    // callback event for when the infiniteScroll event is triggered
+    if (products.length / 25 === page) {
+      setPage((currentPage) => currentPage + 1)
+    }
+  }, [page, products.length])
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const productsResult = await getProducts(filterValues)
-      setProducts(productsResult)
+      const productsResult = await getProducts(filterValues, page)
+      if (products.length / 25 === page - 1) {
+        setProducts([...products, ...productsResult])
+      } else {
+        setProducts(productsResult)
+      }
     }
 
     fetchProducts()
-  }, [setProducts, filterValues])
+    // Excluded products from the dependency as it will cause an infinite loop
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [setProducts, filterValues, page])
 
   return (
     <div className={c.main}>
@@ -34,7 +48,7 @@ export default function IndexPage() {
       {!!products?.length && (
         <section>
           <div className={c.productContent}>
-            <ScrollPane>
+            <ScrollPane scrollEndCallback={scrollEndCallback}>
               {products.map((product) => (
                 <Product key={product.id} product={product} />
               ))}
@@ -56,6 +70,7 @@ export default function IndexPage() {
           <button
             onClick={() => {
               setFilterValues([])
+              setPage(1)
               capture(TYPES.CLICK, { type: 'Clear filter values' })
             }}
           >
@@ -89,7 +104,10 @@ export default function IndexPage() {
             closeFilters()
             capture(TYPES.CLICK, { type: 'Close filters' })
           }}
-          setFilterValues={setFilterValues}
+          setFilterValues={(args) => {
+            setFilterValues(args)
+            setPage(1)
+          }}
         />
       </Sidepane>
     </div>
