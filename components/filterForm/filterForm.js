@@ -29,7 +29,7 @@ const FilterForm = ({ formConfig, setFilterValues }) => {
           Apply
         </button>
         <button
-          type="button"
+          type="reset"
           onClick={() => {
             setFilterValues([])
             capture(TYPES.CLICK, { type: 'Clear all filters' })
