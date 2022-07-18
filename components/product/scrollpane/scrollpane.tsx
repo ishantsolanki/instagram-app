@@ -2,7 +2,15 @@ import { Children, useEffect, useRef, useMemo } from 'react'
 import useIntersectionObserver from '../../../hooks/useIntersectionObserver'
 import c from './scrollpane.module.css'
 
-const ScrollPane = ({ children, scrollEndCallback }) => {
+interface ScrollPaneProps {
+  children: React.ReactNode
+  scrollEndCallback(): void
+}
+
+const ScrollPane: React.FC<ScrollPaneProps> = ({
+  children,
+  scrollEndCallback,
+}) => {
   const setRef = useRef(null)
   const entry = useIntersectionObserver(setRef, {
     threshold: 0.9,

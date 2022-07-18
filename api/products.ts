@@ -26,7 +26,7 @@ const addFakePrices = (
 const getProducts = (
   filterValues: FilterType,
   page: number
-): Promise<ProductInterface[]> => {
+): Promise<ProductInterfaceWithPrice[]> => {
   const urlSearchParams = generateSearchParamsFromFilterValues(filterValues)
   urlSearchParams.set('page', page.toString())
 

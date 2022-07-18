@@ -1,8 +1,25 @@
+import { FormEventHandler } from 'react'
 import capture, { TYPES } from '../../analytics/capture'
 import c from './filterForm.module.css'
 
-const FilterForm = ({ formConfig, setFilterValues }) => {
-  const onFormSubmit = (event) => {
+interface FilterFormProps {
+  formConfig: {
+    fields: {
+      name: string
+      id: string
+      label: string
+      Component: React.ElementType
+      type: string
+    }[]
+  }
+  setFilterValues(args: unknown): void
+}
+
+const FilterForm: React.FC<FilterFormProps> = ({
+  formConfig,
+  setFilterValues,
+}) => {
+  const onFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault()
 
     const formData = new FormData(event.currentTarget)

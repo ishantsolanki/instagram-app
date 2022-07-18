@@ -4,13 +4,14 @@ import BasketContext from '../../context/basket'
 import useBoolean from '../../hooks/useBoolean'
 import capture, { TYPES } from '../../analytics/capture'
 import Link from 'next/link'
+import { BasketInterface } from '../../types/basket'
 
-const BasketContent = () => {
+const BasketContent: React.FC = () => {
   const [basket] = useContext(BasketContext)
   const [areProductsBought, [buyProducts]] = useBoolean(false)
 
   const basketItemsForBilling = useMemo(() => {
-    const itemsForBilling = new Map()
+    const itemsForBilling = new Map<string, BasketInterface>()
 
     basket.forEach((basketItem) => {
       // group items and calculate quantity for each
@@ -22,6 +23,7 @@ const BasketContent = () => {
         })
       } else {
         itemsForBilling.set(basketItem.id, {
+          id: basketItem.id,
           name: basketItem.name,
           quantity: 1,
           price: basketItem.price,

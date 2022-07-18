@@ -4,8 +4,13 @@ import useDwellTimeLog from '../../hooks/useDwellTimeLog'
 import c from './product.module.css'
 import ProductImage from './productImage'
 import capture, { captureDwellTime, TYPES } from '../../analytics/capture'
+import { ProductInterfaceWithPrice } from '../../types/product'
 
-const Product = ({ product }) => {
+interface ProductProps {
+  product: ProductInterfaceWithPrice
+}
+
+const Product: React.FC<ProductProps> = ({ product }) => {
   const [basket, dispatch] = useContext(BasketContext)
   const [setRef] = useDwellTimeLog(
     captureDwellTime({ productId: product.id, name: 'Product viewed' })

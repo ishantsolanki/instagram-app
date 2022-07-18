@@ -1,7 +1,17 @@
 import cx from 'classnames'
 import c from './sidepane.module.css'
 
-const Sidepane = ({ children, isOpen, closeHandler }) => {
+interface SidepaneProps {
+  children: React.ReactNode
+  isOpen: boolean
+  closeHandler(): void
+}
+
+const Sidepane: React.FC<SidepaneProps> = ({
+  children,
+  isOpen,
+  closeHandler,
+}) => {
   const sidepaneClass = cx(c.sidepane, {
     [c.isOpen]: isOpen,
     [c.isClosed]: !isOpen,

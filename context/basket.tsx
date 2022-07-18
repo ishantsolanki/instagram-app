@@ -1,17 +1,16 @@
 import { createContext, Dispatch, useReducer } from 'react'
-import { BasketInterface } from '../types/basket'
+import { ProductInterfaceWithPrice } from '../types/product'
 
 interface Action {
   type: 'ADD'
-  payload: BasketInterface
+  payload: ProductInterfaceWithPrice
 }
 
-const BasketContext = createContext<[BasketInterface[], Dispatch<Action>]>([
-  [],
-  () => null,
-])
+const BasketContext = createContext<
+  [ProductInterfaceWithPrice[], Dispatch<Action>]
+>([[], () => null])
 
-const basketReducer = (basket: BasketInterface[], action: Action) => {
+const basketReducer = (basket: ProductInterfaceWithPrice[], action: Action) => {
   if (action.type === 'ADD') {
     return [...basket, action.payload]
   }

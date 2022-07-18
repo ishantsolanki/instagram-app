@@ -18,11 +18,11 @@ import capture, { TYPES } from '../analytics/capture'
 import c from './index.module.css'
 import Link from 'next/link'
 import NoProducts from '../components/noProducts/noProducts'
-import { ProductInterface } from '../types/product'
+import { ProductInterface, ProductInterfaceWithPrice } from '../types/product'
 import { FilterType } from '../types/filter'
 
 const IndexPage: React.FC = () => {
-  const [products, setProducts] = useState<ProductInterface[]>([])
+  const [products, setProducts] = useState<ProductInterfaceWithPrice[]>([])
   const [isFilterOpen, [openFilters, closeFilters]] = useBoolean(false)
   const [filterValues, setFilterValues] = useContext(FilterContext)
   const [basket] = useContext(BasketContext)
