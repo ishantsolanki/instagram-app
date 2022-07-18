@@ -1,4 +1,10 @@
-import { useCallback, useContext, useEffect, useState } from 'react'
+import {
+  SetStateAction,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import getProducts from '../api/products'
 import Product from '../components/product/product'
 import Sidepane from '../components/sidepane/sidepane'
@@ -12,9 +18,11 @@ import capture, { TYPES } from '../analytics/capture'
 import c from './index.module.css'
 import Link from 'next/link'
 import NoProducts from '../components/noProducts/noProducts'
+import { ProductInterface } from '../types/product'
+import { FilterType } from '../types/filter'
 
-export default function IndexPage() {
-  const [products, setProducts] = useState([])
+const IndexPage: React.FC = () => {
+  const [products, setProducts] = useState<ProductInterface[]>([])
   const [isFilterOpen, [openFilters, closeFilters]] = useBoolean(false)
   const [filterValues, setFilterValues] = useContext(FilterContext)
   const [basket] = useContext(BasketContext)
@@ -59,7 +67,7 @@ export default function IndexPage() {
       {!products?.length && (
         <NoProducts
           onClearFilters={() => {
-            setFilterValues([])
+            setFilterValues({})
             setPage(1)
             capture(TYPES.CLICK, { type: 'Clear filter values' })
           }}
@@ -91,8 +99,8 @@ export default function IndexPage() {
             closeFilters()
             capture(TYPES.CLICK, { type: 'Close filters' })
           }}
-          setFilterValues={(args) => {
-            setFilterValues(args)
+          setFilterValues={(args: unknown) => {
+            setFilterValues(args as SetStateAction<FilterType>)
             setPage(1)
           }}
         />
@@ -100,3 +108,5 @@ export default function IndexPage() {
     </div>
   )
 }
+
+export default IndexPage

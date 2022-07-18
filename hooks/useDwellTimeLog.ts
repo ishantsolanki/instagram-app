@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import useIntersectionObserver from './useIntersectionObserver'
 
-const useDwellTimeLog = (cb) => {
-  const ref = useRef(null)
-  const [timer, setTimer] = useState(null)
-  const entry = useIntersectionObserver(ref, {})
+const useDwellTimeLog = (cb: (timer: number) => void) => {
+  const ref = useRef<HTMLDivElement | null>(null)
+  const [timer, setTimer] = useState<number | null>(null)
+  const entry = useIntersectionObserver(ref!, {})
 
   const isInViewport = useMemo(() => {
     return !!entry?.isIntersecting
