@@ -18,7 +18,7 @@ import capture, { TYPES } from '../analytics/capture'
 import c from './index.module.css'
 import Link from 'next/link'
 import NoProducts from '../components/noProducts/noProducts'
-import { ProductInterface, ProductInterfaceWithPrice } from '../types/product'
+import { ProductInterfaceWithPrice } from '../types/product'
 import { FilterType } from '../types/filter'
 
 const IndexPage: React.FC = () => {
