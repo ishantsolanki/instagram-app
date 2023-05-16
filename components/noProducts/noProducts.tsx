@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import c from './NoProducts.module.css'
+import c from './noProducts.module.css'
 
 interface NoProductsProps {
   onClearFilters(): void
